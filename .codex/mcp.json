@@ -34,7 +34,7 @@
         "-y",
         "@modelcontextprotocol/server-time"
       ],
-      "enabled": false,
+      "enabled": true,
       "tier": "core",
       "note": "Enable when workflows need deterministic timezone conversions"
     },
@@ -45,7 +45,7 @@
         "-y",
         "@modelcontextprotocol/server-fetch"
       ],
-      "enabled": false,
+      "enabled": true,
       "tier": "core",
       "note": "Enable for source-backed doc lookups"
     },
