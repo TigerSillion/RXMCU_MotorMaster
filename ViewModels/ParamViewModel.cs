@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Globalization;
 using System.Windows;
@@ -110,6 +111,8 @@ public sealed class ParamViewModel : ObservableObject
         _autoRefreshTimer.Tick += async (_, _) => await AutoRefreshTickAsync();
 
         BuildDefaultParameters();
+        Parameters.CollectionChanged += OnParametersCollectionChanged;
+        AttachParameterHandlers(Parameters);
         FilteredParameters = CollectionViewSource.GetDefaultView(Parameters);
         FilteredParameters.Filter = FilterPredicate;
         SelectedParameter = Parameters.FirstOrDefault();
@@ -782,4 +785,47 @@ public sealed class ParamViewModel : ObservableObject
         ImportMapCommand.RaiseCanExecuteChanged();
         RefreshAddressesCommand.RaiseCanExecuteChanged();
     }
+    private void OnParametersCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+    {
+        if (e.OldItems is not null)
+        {
+            foreach (var item in e.OldItems.OfType<ParameterItemViewModel>())
+            {
+                item.PropertyChanged -= OnParameterItemPropertyChanged;
+            }
+        }
+
+        if (e.NewItems is not null)
+        {
+            foreach (var item in e.NewItems.OfType<ParameterItemViewModel>())
+            {
+                item.PropertyChanged += OnParameterItemPropertyChanged;
+            }
+        }
+
+        RefreshCheckedCommand.RaiseCanExecuteChanged();
+        WriteSelectedCommand.RaiseCanExecuteChanged();
+    }
+
+    private void AttachParameterHandlers(IEnumerable<ParameterItemViewModel> items)
+    {
+        foreach (var item in items)
+        {
+            item.PropertyChanged += OnParameterItemPropertyChanged;
+        }
+    }
+
+    private void OnParameterItemPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName is nameof(ParameterItemViewModel.AutoRead))
+        {
+            RefreshCheckedCommand.RaiseCanExecuteChanged();
+        }
+
+        if (sender == SelectedParameter && e.PropertyName is nameof(ParameterItemViewModel.Writable))
+        {
+            WriteSelectedCommand.RaiseCanExecuteChanged();
+        }
+    }
+
 }
