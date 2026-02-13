@@ -1,0 +1,31 @@
+# Codex project config for RXMCU_MotorMaster GUI
+
+[project]
+name = "RXMCU_MotorMaster"
+primary_language = "csharp"
+secondary_languages = ["xaml", "markdown"]
+
+[defaults]
+reasoning_effort = "high"
+verbosity = "concise"
+
+[execution]
+shell = "powershell"
+workspace_trust = "trusted"
+
+[quality]
+require_plan_for_large_refactor = true
+require_docs_update_for_ui_change = true
+require_docs_update_for_protocol_change = true
+require_build_success = true
+
+[paths]
+solution = "RXMCU_MotorMaster.sln"
+project = "MotorDebugStudio.csproj"
+viewmodels = "ViewModels"
+services = "Services"
+protocol_doc = "docs/PROTOCOL_UART_BIN_V1.md"
+development_log = "docs/DEVELOPMENT_LOG.md"
+
+[review]
+focus = ["protocol-compatibility", "ui-regression", "thread-safety", "serial-transport-stability"]
