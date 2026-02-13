@@ -1,5 +1,24 @@
-# Development Log
+﻿# Development Log
 
+## 2026-02-13 (Professional MCP + Skill stack for GUI engineering)
+- Added project-scoped advanced Codex configuration for `RXMCU_MotorMaster`:
+  - `AGENTS.md`
+  - `.codex/config.toml`
+  - `.codex/mcp.json`
+- Upgraded MCP config to profile-based tiers (`core`, `gui_advanced`) with curated server set:
+  - filesystem, fetch, time, memory, Playwright MCP, GitHub MCP, optional local git via uvx.
+- Added professional skill pack under `.codex/skills/`:
+  - `motor-debug-gui`
+  - `gui-design-system`
+  - `wpf-performance`
+  - `ui-automation-playwright`
+  - `release-gate`
+- Added deep-research guidance doc:
+  - `docs/GUI_PROFESSIONAL_STACK.md`
+  - includes authoritative source links for MCP, OpenAI tools, WPF performance, diagnostics, and Fluent design.
+- Updated configuration guide:
+  - `docs/CODEX_CONFIGURATION_ADVANCED.md`
+- Updated `README.md` docs section for discoverability.
 ## 2026-02-13 (GUI simplification + resizable persistent layout)
 - Implemented medium-level UI simplification to keep only core workflow:
   - Removed UI entries for theme toggle.
@@ -20,8 +39,8 @@
   - Persisted fields: `LeftRatio`, `CenterRatio`, `RightRatio`, `BottomPanelHeight`.
   - Startup restore + closing save implemented in `MainWindow.xaml.cs`.
 - MAP workflow alignment:
-  - Variable import���ͳһΪ `File -> Import Variables From MAP...`.
-  - Address refresh���ͳһΪ `File -> Refresh Addresses`.
+  - Variable import入口统一为 `File -> Import Variables From MAP...`.
+  - Address refresh入口统一为 `File -> Refresh Addresses`.
   - Removed duplicate left-pane MAP import buttons.
 - Switched default resource theme to Light (`App.xaml` now loads `Theme.Light.xaml`).
 
@@ -54,3 +73,4 @@
 - Added `AutoTestViewModel` for one-click UART protocol validation.
 - Added UI section in right panel: `Run UART Auto Test` + result/duration/scope-event counters.
 - Test sequence: HELLO -> HEARTBEAT -> SCOPE_LAYOUT -> SCOPE_START/STOP + event count -> READ_TYPED -> WRITE_TYPED + readback -> MOTOR_CTRL(STOP).
+

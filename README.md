@@ -1,4 +1,4 @@
-# RXMCU_MotorMaster
+ï»¿# RXMCU_MotorMaster
 
 UART-first motor tuning and diagnostics tool for RX26T targets.
 
@@ -29,7 +29,7 @@ dotnet run --project .\MotorDebugStudio.csproj
 - `GridSplitter` supports live resizing for left/center/right and bottom log panel.
 - Layout is persisted to `%AppData%/MotorDebugStudio/layout.json` and restored on startup.
 - HELLO/HEARTBEAT stays in transport layer for stability, but related noisy UI status is hidden.
-- Theme toggle, auto-testÈë¿Ú, and session import/exportÈë¿Ú are removed from UI.
+- Theme toggle, auto-test entry, and session import/export entry are removed from UI.
 
 ## Default bound parameter addresses (from RX26T map)
 - `com_u1_system_mode` @ `0x00001801` (`u8`)
@@ -46,3 +46,5 @@ dotnet run --project .\MotorDebugStudio.csproj
 - `docs/ARCHITECTURE.md`
 - `docs/PROTOCOL_UART_BIN_V1.md`
 - `docs/DEVELOPMENT_LOG.md`
+- `docs/CODEX_CONFIGURATION_ADVANCED.md`
+- `docs/GUI_PROFESSIONAL_STACK.md`

@@ -1,6 +1,20 @@
 {
   "$schema": "https://json.schemastore.org/json",
-  "version": 1,
+  "version": 2,
+  "profiles": {
+    "core": [
+      "filesystem_gui_repo",
+      "time",
+      "fetch"
+    ],
+    "gui_advanced": [
+      "filesystem_gui_repo",
+      "time",
+      "fetch",
+      "playwright_mcp",
+      "github"
+    ]
+  },
   "servers": {
     "filesystem_gui_repo": {
       "transport": "stdio",
@@ -10,9 +24,64 @@
         "@modelcontextprotocol/server-filesystem",
         "E:\\E2Sworkspace\\202512\\RXMCU_MotorMaster"
       ],
-      "enabled": true
+      "enabled": true,
+      "tier": "core"
     },
-    "git_gui_repo": {
+    "time": {
+      "transport": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-time"
+      ],
+      "enabled": false,
+      "tier": "core",
+      "note": "Enable when workflows need deterministic timezone conversions"
+    },
+    "fetch": {
+      "transport": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ],
+      "enabled": false,
+      "tier": "core",
+      "note": "Enable for source-backed doc lookups"
+    },
+    "memory": {
+      "transport": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "enabled": false,
+      "tier": "extended",
+      "note": "Enable for long-running multi-session context retention"
+    },
+    "playwright_mcp": {
+      "transport": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "enabled": false,
+      "tier": "extended",
+      "note": "Enable for UI automation, visual assertions, and navigation flows"
+    },
+    "github": {
+      "transport": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${env:GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "enabled": false,
+      "tier": "extended",
+      "note": "Requires GitHub token and MCP-capable client"
+    },
+    "git_local_uvx": {
       "transport": "stdio",
       "command": "uvx",
       "args": [
@@ -21,7 +90,8 @@
         "E:\\E2Sworkspace\\202512\\RXMCU_MotorMaster"
       ],
       "enabled": false,
-      "note": "Enable after installing uv/uvx and mcp-server-git"
+      "tier": "optional",
+      "note": "Install uv/uvx before enabling"
     }
   }
 }

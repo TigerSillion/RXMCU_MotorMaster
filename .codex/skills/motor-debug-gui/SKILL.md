@@ -1,7 +1,7 @@
 # SKILL: motor-debug-gui
 
 ## Purpose
-Execute reliable development workflow for `RXMCU_MotorMaster` (WPF + UART protocol GUI).
+Execute end-to-end development workflow for `RXMCU_MotorMaster` (WPF + UART protocol GUI).
 
 ## Inputs
 - COM port / baudrate
@@ -10,33 +10,39 @@ Execute reliable development workflow for `RXMCU_MotorMaster` (WPF + UART protoc
 
 ## Standard Workflow
 1. Build check
-- `dotnet build .\MotorDebugStudio.csproj`
+- `dotnet build .\\MotorDebugStudio.csproj`
 
 2. Transport check
-- Verify connect/disconnect path from `ConnectionViewModel`.
-- Ensure HELLO/HEARTBEAT remains internal health mechanism (low UI noise).
+- verify connect/disconnect path in `ConnectionViewModel`.
+- keep HELLO/HEARTBEAT as internal health mechanism, not noisy UI telemetry.
 
 3. Variable workflow check
-- Import MAP -> verify variable list and types.
-- Refresh addresses -> keep user annotations and auto-read states.
-- Verify read/write/readback behavior for writable parameters.
+- import MAP -> verify variable list and types.
+- refresh addresses -> keep user annotations and auto-read flags.
+- verify writable parameter write + readback.
 
 4. Scope workflow check
-- Start/stop sampling.
-- Confirm plot update performance and no UI freeze.
-- Validate stream stats shown in top/plot status.
+- start/stop sampling.
+- confirm plot refresh smoothness and no UI freeze.
+- validate stream stats and state badges.
 
 5. Layout and UX check
-- Left-center-right split behavior.
-- GridSplitter resize persistence across restart.
-- Log/fault tabs readable and non-blocking.
+- left/center/right split behavior.
+- splitter persistence across restart.
+- log/fault tabs readable and non-blocking.
+
+## Companion Skills
+- `gui-design-system` for visual consistency.
+- `wpf-performance` for render/data-path optimization.
+- `ui-automation-playwright` for repeatable UI regression checks.
+- `release-gate` before publish/push.
 
 ## Deliverables
 - concise change summary
 - regression risks
-- updated `README.md` and `docs/DEVELOPMENT_LOG.md` when behavior changes
+- updates to `README.md` and `docs/DEVELOPMENT_LOG.md` for behavior changes
 
 ## Guardrails
-- No protocol drift without doc update.
-- No thread-unsafe collection updates from background transport callbacks.
-- No breaking command bindings in `MainWindow.xaml`.
+- no protocol drift without docs update.
+- no thread-unsafe collection updates from background callbacks.
+- no broken command bindings in `MainWindow.xaml`.

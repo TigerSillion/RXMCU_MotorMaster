@@ -1,12 +1,17 @@
 # Codex Configuration for RXMCU_MotorMaster
 
-This project-level advanced configuration is now scoped specifically to GUI development.
+This project now includes a professional MCP + Skill setup tailored for WPF GUI engineering.
 
 ## Config Targets
 - `AGENTS.md`
 - `.codex/config.toml`
 - `.codex/mcp.json`
 - `.codex/skills/motor-debug-gui/SKILL.md`
+- `.codex/skills/gui-design-system/SKILL.md`
+- `.codex/skills/wpf-performance/SKILL.md`
+- `.codex/skills/ui-automation-playwright/SKILL.md`
+- `.codex/skills/release-gate/SKILL.md`
+- `docs/GUI_PROFESSIONAL_STACK.md`
 
 ## Usage
 1. Open `E:\E2Sworkspace\202512\RXMCU_MotorMaster` as workspace root.
@@ -16,7 +21,11 @@ This project-level advanced configuration is now scoped specifically to GUI deve
    - MCP file -> `.codex/mcp.json`
 3. Keep skills enabled from `.codex/skills`.
 
+## MCP Profiles
+- `core`: filesystem + fetch + time
+- `gui_advanced`: core + playwright + github
+
 ## Notes
-- MCP filesystem server is enabled by default and points to this GUI repo.
-- Git MCP server is prepared but disabled until dependencies are installed.
-- All rules are tailored for WPF GUI + UART protocol integration workflow.
+- `npx` and `dotnet` are available locally.
+- `uvx` is currently not installed; keep `git_local_uvx` disabled until available.
+- For source-backed recommendations and tool choices, use `docs/GUI_PROFESSIONAL_STACK.md`.
