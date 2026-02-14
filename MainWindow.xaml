@@ -185,9 +185,34 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <TextBox Grid.Column="0" Text="{Binding Param.ArtifactMapPath}" />
-                            <Button Grid.Column="1" Content="MAP..." Command="{Binding Param.BrowseMapPathCommand}" />
+                            <Button Grid.Column="1" Content="MAP..." Command="{Binding Param.BrowseAndImportMapCommand}" />
                         </Grid>
+                        <WrapPanel>
+                            <Button Content="Import" Command="{Binding Param.ImportMapCommand}" />
+                            <Button Content="Refresh Addresses" Command="{Binding Param.RefreshAddressesCommand}" />
+                        </WrapPanel>
                         <TextBlock Foreground="{DynamicResource BrushTextSecondary}" Text="{Binding Param.MapImportStatus}" TextWrapping="Wrap" />
+
+                        <TextBlock Margin="0,8,0,0" FontSize="15" FontWeight="SemiBold" Text="Custom Variable" />
+                        <TextBox Text="{Binding Param.NewVarName, UpdateSourceTrigger=PropertyChanged}" ToolTip="Variable name" />
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Text="{Binding Param.NewVarAddressHex, UpdateSourceTrigger=PropertyChanged}" ToolTip="Address (hex/dec)" />
+                            <ComboBox Grid.Column="1" ItemsSource="{Binding Param.SupportedTypes}" SelectedItem="{Binding Param.NewVarType}" />
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Column="0" Text="{Binding Param.NewVarUnit, UpdateSourceTrigger=PropertyChanged}" ToolTip="Unit" />
+                            <CheckBox Grid.Column="1" Content="Writable" IsChecked="{Binding Param.NewVarWritable}" VerticalAlignment="Center" />
+                        </Grid>
+                        <TextBox Text="{Binding Param.NewVarNote, UpdateSourceTrigger=PropertyChanged}" ToolTip="Note" />
+                        <Button Content="Add Custom Variable" Command="{Binding Param.AddCustomVariableCommand}" />
 
                         <TextBlock Margin="0,8,0,0" FontSize="15" FontWeight="SemiBold" Text="Commands" />
                         <UniformGrid Columns="2">

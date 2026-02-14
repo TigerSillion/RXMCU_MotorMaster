@@ -30,6 +30,8 @@ dotnet run --project .\MotorDebugStudio.csproj
 - Layout is persisted to `%AppData%/MotorDebugStudio/layout.json` and restored on startup.
 - HELLO/HEARTBEAT stays in transport layer for stability, but related noisy UI status is hidden.
 - Theme toggle, auto-test entry, and session import/export entry are removed from UI.
+- Right panel `CCRX MAP` supports quick browse+import and explicit `Import` / `Refresh Addresses` actions.
+- Right panel supports adding custom variables (name/address/type/unit/writable/note) for ad-hoc diagnostics.
 
 ## Default bound parameter addresses (from RX26T map)
 - `com_u1_system_mode` @ `0x00001801` (`u8`)

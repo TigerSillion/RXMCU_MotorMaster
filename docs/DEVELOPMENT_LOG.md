@@ -74,3 +74,13 @@
 - Added UI section in right panel: `Run UART Auto Test` + result/duration/scope-event counters.
 - Test sequence: HELLO -> HEARTBEAT -> SCOPE_LAYOUT -> SCOPE_START/STOP + event count -> READ_TYPED -> WRITE_TYPED + readback -> MOTOR_CTRL(STOP).
 
+
+## 2026-02-13 (Core flow completion: MAP + custom variable operations)
+- Restored MAP operations in right-side connection panel without changing core flow:
+  - `MAP...` now performs browse + immediate import.
+  - Added explicit `Import` and `Refresh Addresses` buttons next to MAP status.
+- Completed custom variable workflow in UI:
+  - Added name/address/type/unit/writable/note editors.
+  - Added `Add Custom Variable` action bound to existing validated logic.
+- Improved command availability refresh for parameter table mutations:
+  - `Read Auto` and `Write Selected` now re-evaluate immediately when parameter rows or `AutoRead/Writable` state changes.
